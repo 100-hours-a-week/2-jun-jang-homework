@@ -1,6 +1,6 @@
 package homework1.Class.Food;
 
-public class Food {
+public abstract class Food {
     private int price;
     private int amount;
     private String name;
@@ -18,7 +18,7 @@ public class Food {
     public String getName() {
         return name;
     }
-    public String getDescription() {
-        return null;
-    }
+
+    public abstract String getDescription();
+    public abstract  <T extends Food> T getMenu();
 }

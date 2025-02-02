@@ -12,15 +12,10 @@ import java.util.Random;
 
 public class Customer {
     private final List<String> orders=  new ArrayList<>();
-    private Coffee coffee;
+    private Coffee coffee=null;
     private Ade ade=null;
     private Cake cake=null;
     private Sandwich sandwich=null;
-
-    //커피 주문 프리셋, 커피는 무조건 주문한다.
-    String[] coffeeNames={"아메리카노", "카페라테"};
-    String[] coffeeTemperatures={"HOT","ICE"};
-    String[] coffeeBeans={"아라비아타","로부스타"};
 
     public Customer(){
         Random rand = new Random();
@@ -50,20 +45,22 @@ public class Customer {
     }
 
     public Coffee getCoffee() {
+
         return coffee;
     }
 
     public Ade getAde() {
+
         return ade;
     }
     public Cake getCake() {
+
         return cake;
     }
     public Sandwich getSandwich() {
+
         return sandwich;
     }
-
-
     public List<String> getOrders() {
         return orders;
     }
@@ -86,7 +83,7 @@ public class Customer {
         String name = adeNames[rand.nextInt(adeNames.length)];
         int price = 4000;
         int amount = rand.nextInt(5) + 1;
-        return new Ade(price, amount, name, isWhipped);
+        return new Ade(price, amount, name, "ICE",isWhipped);
     }
 
     private Cake createCake(Random rand) {
