@@ -69,10 +69,10 @@ public class Game {
     }
     private void showMenu() {
         System.out.println("메뉴판:");
-        System.out.println("1. 샌드위치 - 치킨 샌드위치, 계란 샌드위치");
-        System.out.println("2. 케이크 - 생크림 케이크, 초콜릿 케이크");
-        System.out.println("3. 커피 - 아메리카노, 에스프레소");
-        System.out.println("4. 에이드 - 레몬에이드, 자몽에이드");
+        System.out.println("1. 샌드위치 - 치킨 샌드위치, 계란 샌드위치 - 5,000 원 ");
+        System.out.println("2. 케이크 - 생크림 케이크, 초콜릿 케이크 - 7,000 원");
+        System.out.println("3. 커피 - 아메리카노, 에스프레소 - 3,000 원");
+        System.out.println("4. 에이드 - 레몬에이드, 자몽에이드 - 4,000 원");
     }
     private void meetCustomer() {
         Customer customer = new Customer();
