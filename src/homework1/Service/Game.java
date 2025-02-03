@@ -1,11 +1,13 @@
 package homework1.Service;
 
 import homework1.Model.Customer.Customer;
+import homework1.Model.Enums.Menu;
 import homework1.Model.Food.Dessert.Cake;
 import homework1.Model.Food.Dessert.Sandwich;
 import homework1.Model.Food.Drink.Ade;
 import homework1.Model.Food.Drink.Coffee;
 import homework1.Utill.InputHandler;
+import homework1.Utill.MenuFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,10 +75,10 @@ public class Game {
     }
     private void showMenu() {
         System.out.println("메뉴판:");
-        System.out.println("1. 샌드위치 - 치킨 샌드위치, 계란 샌드위치 - 5,000 원 ");
-        System.out.println("2. 케이크 - 생크림 케이크, 초콜릿 케이크 - 7,000 원");
-        System.out.println("3. 커피 - 아메리카노, 에스프레소 - 3,000 원");
-        System.out.println("4. 에이드 - 레몬에이드, 자몽에이드 - 4,000 원");
+        Menu [] menus=Menu.values();
+        for(Menu menu:menus){
+            System.out.println("- " + menu.getName()+ " "+menu.getPrice()+"원");
+        }
     }
     private void meetCustomer() {
         Customer customer = new Customer();
@@ -86,14 +88,13 @@ public class Game {
         }
         System.out.println("--------------------------------------------------------------");
         System.out.println("손님이 원하는 메뉴를 골라주세요!");
-        Coffee coffee=new Coffee(0,0,"","","");
-        coffee= coffee.getMenu();
-        Ade ade=new Ade(0,0,"","",false);
-        ade= ade.getMenu();
-        Cake cake=new Cake(0,0,"",0,"");
-        cake= cake.getMenu();
-        Sandwich sandwich=new Sandwich(0,0,"",0,0);
-        sandwich= sandwich.getMenu();
+        Coffee coffee=MenuFactory.createCoffee();
+        System.out.println("--------------------------------------------------------------");
+        Ade ade=MenuFactory.createAde();
+        System.out.println("--------------------------------------------------------------");
+        Cake cake=MenuFactory.createCake();
+        System.out.println("--------------------------------------------------------------");
+        Sandwich sandwich=MenuFactory.createSandwich();
 
         showResult(customer,coffee,ade,sandwich,cake);
         System.out.println("--------------------------------------------------------------");
@@ -209,6 +210,7 @@ public class Game {
         if(cake!=null){
             managerOrder.put("Cake",cake);
         }
+        //비교 로직
         for(String order: customerOrder.keySet()){
             if(!compareAttributes(customerOrder.get(order),managerOrder.get(order))){
                 return false;

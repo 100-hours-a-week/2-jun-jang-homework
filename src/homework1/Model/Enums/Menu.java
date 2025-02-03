@@ -1,7 +1,7 @@
 package homework1.Model.Enums;
 
 public enum Menu {
-    COFFEE("아메리카노", 3000),
+    AMERICANO("아메리카노", 3000),
     LATTE("카페라테", 3500),
     LEMONADE("레몬에이드", 4000),
     GRAPEFRUIT_ADE("자몽에이드", 4000),
@@ -24,4 +24,6 @@ public enum Menu {
     public int getPrice(){
         return this.price;
     }
+
+
 }

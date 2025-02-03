@@ -1,9 +1,11 @@
 package homework1.Model.Customer;
 
+import homework1.Model.Enums.*;
 import homework1.Model.Food.Dessert.Cake;
 import homework1.Model.Food.Dessert.Sandwich;
 import homework1.Model.Food.Drink.Ade;
 import homework1.Model.Food.Drink.Coffee;
+import homework1.Utill.MenuFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,44 +67,48 @@ public class Customer {
     }
 
     private Coffee createCoffee(Random rand) {
-        String[] coffeeNames = {"아메리카노", "카페라테"};
-        String[] coffeeTemperatures = {"HOT", "ICE"};
-        String[] coffeeBeans = {"아라비아타", "로부스타"};
-        String name = coffeeNames[rand.nextInt(coffeeNames.length)];
-        String temperature = coffeeTemperatures[rand.nextInt(coffeeTemperatures.length)];
-        String bean = coffeeBeans[rand.nextInt(coffeeBeans.length)];
-        int price = 3000;
+        Menu[] coffees = MenuFactory.getCoffeeMenu();
+        DrinkTemperature[] coffeeTemperatures=DrinkTemperature.values();
+        CoffeeBeans [] coffeeBeans=CoffeeBeans.values();
+        Menu coffee= coffees[rand.nextInt(coffees.length)];
+        String name = coffee.getName();
+        String temperature = coffeeTemperatures[rand.nextInt(coffeeTemperatures.length)].toString();
+        String bean = coffeeBeans[rand.nextInt(coffeeBeans.length)].getName();
+        int price = coffee.getPrice();
         int amount = rand.nextInt(5) + 1;
         return new Coffee(price, amount, name, temperature, bean);
     }
 
     private Ade createAde(Random rand) {
-        String[] adeNames = {"레몬에이드", "자몽에이드"};
+        Menu[] ades = MenuFactory.getAdeMenu();
         boolean isWhipped = rand.nextBoolean();
-        String name = adeNames[rand.nextInt(adeNames.length)];
-        int price = 4000;
+        Menu ade= ades[rand.nextInt(ades.length)];
+        String name = ade.getName();
+        int price = ade.getPrice();
         int amount = rand.nextInt(5) + 1;
         return new Ade(price, amount, name, "ICE",isWhipped);
     }
 
     private Cake createCake(Random rand) {
-        String[] cakeNames = {"딸기 케이크", "초콜릿 케이크"};
-        String[] sizes = {"small", "medium", "large"};
-        String name = cakeNames[rand.nextInt(cakeNames.length)];
-        String size = sizes[rand.nextInt(sizes.length)];
+        Menu[] cakes = MenuFactory.getCakeMenu();
+        CakeSizes[] sizes = CakeSizes.values();
+        Menu cake= cakes[rand.nextInt(cakes.length)];
+        String name = cake.getName();
+        String size = sizes[rand.nextInt(sizes.length)].toString();
         int forkCount = rand.nextInt(3) + 1;
-        int price = 7000;
+        int price = cake.getPrice();
         int amount = rand.nextInt(5) + 1;
         return new Cake(price, amount, name, forkCount, size);
     }
 
     private Sandwich createSandwich(Random rand) {
-        String[] sandwichNames = {"치킨 샌드위치", "계란 샌드위치"};
-        int[] lengths = {15, 30};
-        String name = sandwichNames[rand.nextInt(sandwichNames.length)];
-        int length = lengths[rand.nextInt(lengths.length)];
+        Menu[] sandwiches = MenuFactory.getSandwichMenu();
+        SandwichLength[] lengths = SandwichLength.values();
+        Menu sandwich= sandwiches[rand.nextInt(sandwiches.length)];
+        String name = sandwich.getName();
+        int length = lengths[rand.nextInt(lengths.length)].getLength();
         int forkCount = rand.nextInt(3) + 1;
-        int price = 5000;
+        int price = sandwich.getPrice();
         int amount = rand.nextInt(5) + 1;
         return new Sandwich(price, amount, name, forkCount, length);
     }

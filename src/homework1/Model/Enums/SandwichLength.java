@@ -6,4 +6,8 @@ public enum SandwichLength {
     SandwichLength(int length){
         this.length=length;
     }
+    public int getLength(){
+        return length;
+    }
+
 }
