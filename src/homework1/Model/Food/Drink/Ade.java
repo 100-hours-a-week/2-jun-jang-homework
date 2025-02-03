@@ -1,9 +1,6 @@
-package homework1.Class.Food.Drink;
+package homework1.Model.Food.Drink;
 
-import homework1.Class.Food.Food;
-import homework1.Class.Utill.InputHandler;
-
-import java.util.Scanner;
+import homework1.Utill.InputHandler;
 
 public class Ade extends Drink {
     private boolean isWhipped;
@@ -13,6 +10,17 @@ public class Ade extends Drink {
     }
     public boolean isWhipped() {
         return isWhipped;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Ade ade = (Ade) obj;
+        return this.getAmount() == ade.getAmount() &&
+                this.getName().equals(ade.getName()) &&
+                this.getTemperature().equals(ade.getTemperature()) &&
+                this.isWhipped() == ade.isWhipped();
     }
     @Override
     public String getDescription() {

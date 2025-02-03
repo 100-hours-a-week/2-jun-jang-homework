@@ -1,4 +1,4 @@
-package homework1.Class.Food;
+package homework1.Model.Food;
 
 public abstract class Food {
     private int price;

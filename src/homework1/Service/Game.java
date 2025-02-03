@@ -1,10 +1,14 @@
-package homework1.Class.Game;
+package homework1.Service;
 
-import homework1.Class.Food.Dessert.Cake;
-import homework1.Class.Food.Dessert.Sandwich;
-import homework1.Class.Food.Drink.Ade;
-import homework1.Class.Food.Drink.Coffee;
-import homework1.Class.Utill.InputHandler;
+import homework1.Model.Customer.Customer;
+import homework1.Model.Food.Dessert.Cake;
+import homework1.Model.Food.Dessert.Sandwich;
+import homework1.Model.Food.Drink.Ade;
+import homework1.Model.Food.Drink.Coffee;
+import homework1.Utill.InputHandler;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
     private int score;
@@ -175,53 +179,50 @@ public class Game {
         return totalPrice;
     }
     private boolean isEqual(Customer customer, Coffee coffee, Ade ade, Sandwich sandwich, Cake cake) {
-        Coffee customerCoffee = customer.getCoffee();
-        Cake customerCake = customer.getCake();
-        Ade customerAde = customer.getAde();
-        Sandwich customerSandwich = customer.getSandwich();
-        boolean coffeeMatch=false;
-        boolean adeMatch=false;
-        boolean sandwichMatch=false;
-        boolean cakeMatch=false;
+        Map<String, Object> customerOrder = new HashMap<>();
+        Map<String, Object> managerOrder=new HashMap<>();
 
-        if(customerCoffee!=null && coffee!=null) {
-            coffeeMatch = customerCoffee.getName().equals(coffee.getName()) &&
-                    customerCoffee.getTemperature().equals(coffee.getTemperature()) &&
-                    customerCoffee.getCoffeeBean().equals(coffee.getCoffeeBean()) &&
-                    customerCoffee.getAmount() == coffee.getAmount();
-        } else if(customerCoffee==null && coffee==null) {
-            coffeeMatch = true;
+        //손님 주문 저장
+        if(customer.getCoffee()!= null){
+            customerOrder.put("Coffee",customer.getCoffee());
         }
-        if(customerAde!=null && ade!=null) {
-            adeMatch = customerAde.getName().equals(ade.getName()) &&
-                customerAde.getTemperature().equals(ade.getTemperature()) &&
-                customerAde.isWhipped()==ade.isWhipped() &&
-                customerAde.getAmount()==ade.getAmount();
-        }else if(customerAde==null && ade==null) {
-            adeMatch = true;
+        if(customer.getAde()!=null){
+            customerOrder.put("Ade",customer.getAde());
         }
-        if(customerSandwich!=null && sandwich!=null) {
-            sandwichMatch= customerSandwich.getName().equals(sandwich.getName()) &&
-                customerSandwich.getLength() == sandwich.getLength() &&
-                customerSandwich.getFork() == sandwich.getFork() &&
-                customerSandwich.getAmount() == sandwich.getAmount();
-        }else if(customerSandwich==null && sandwich==null) {
-            sandwichMatch = true;
+        if(customer.getSandwich()!=null){
+            customerOrder.put("Sandwich",customer.getSandwich());
+        }
+        if(customer.getCake()!=null){
+            customerOrder.put("Cake",customer.getCake());
         }
 
-        if(customerCake!=null && cake!=null) {
-            cakeMatch = customerCake.getName().equals(cake.getName()) &&
-                customerCake.getSize().equals(cake.getSize()) &&
-                customerCake.getFork() == cake.getFork() &&
-                customerCake.getAmount()==cake.getAmount();
-        }else if(customerCake==null && cake==null) {
-            cakeMatch = true;
+        //매니저 주문 저장
+        if(coffee!= null){
+            managerOrder.put("Coffee",coffee);
         }
+        if(ade!=null){
+            managerOrder.put("Ade",ade);
+        }
+        if(sandwich!=null){
+            managerOrder.put("Sandwich",sandwich);
+        }
+        if(cake!=null){
+            managerOrder.put("Cake",cake);
+        }
+        for(String order: customerOrder.keySet()){
+            if(!compareAttributes(customerOrder.get(order),managerOrder.get(order))){
+                return false;
+            }
+        }
+        return true;
 
-
-
-
-        return coffeeMatch && adeMatch && sandwichMatch && cakeMatch;
+    }
+    private boolean compareAttributes(Object obj1,Object obj2){
+        //둘다 NUll인지 한쪽만 NUll인지 체크
+        if(obj1==null || obj2==null){
+            return obj1==obj2;
+        }
+        return obj1.equals(obj2);
     }
     private void exitGame() {
         System.out.println("영업을 종료합니다. 최종 이익: " + score+"원");

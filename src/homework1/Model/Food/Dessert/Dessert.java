@@ -1,6 +1,6 @@
-package homework1.Class.Food.Dessert;
+package homework1.Model.Food.Dessert;
 
-import homework1.Class.Food.Food;
+import homework1.Model.Food.Food;
 
 public abstract class Dessert extends Food {
     private int fork;

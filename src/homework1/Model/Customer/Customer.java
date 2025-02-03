@@ -1,10 +1,9 @@
-package homework1.Class.Game;
+package homework1.Model.Customer;
 
-import homework1.Class.Food.Dessert.Cake;
-import homework1.Class.Food.Dessert.Sandwich;
-import homework1.Class.Food.Drink.Ade;
-import homework1.Class.Food.Drink.Coffee;
-import homework1.Class.Food.Drink.Drink;
+import homework1.Model.Food.Dessert.Cake;
+import homework1.Model.Food.Dessert.Sandwich;
+import homework1.Model.Food.Drink.Ade;
+import homework1.Model.Food.Drink.Coffee;
 
 import java.util.ArrayList;
 import java.util.List;

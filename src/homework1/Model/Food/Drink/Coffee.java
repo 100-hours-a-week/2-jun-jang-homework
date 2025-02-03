@@ -1,8 +1,6 @@
-package homework1.Class.Food.Drink;
+package homework1.Model.Food.Drink;
 
-import homework1.Class.Utill.InputHandler;
-
-import java.util.Scanner;
+import homework1.Utill.InputHandler;
 
 public class Coffee extends Drink{
     private String coffeeBean;
@@ -13,6 +11,19 @@ public class Coffee extends Drink{
     }
     public String getCoffeeBean() {
         return coffeeBean;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Coffee coffee = (Coffee) obj;
+        return this.getAmount() == coffee.getAmount() &&
+                this.getName().equals(coffee.getName()) &&
+                this.getTemperature().equals(coffee.getTemperature()) &&
+                this.getCoffeeBean().equals(coffee.getCoffeeBean());
     }
 
     @Override

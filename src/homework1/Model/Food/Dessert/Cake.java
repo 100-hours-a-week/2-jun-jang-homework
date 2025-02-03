@@ -1,8 +1,6 @@
-package homework1.Class.Food.Dessert;
+package homework1.Model.Food.Dessert;
 
-import homework1.Class.Utill.InputHandler;
-
-import java.util.Scanner;
+import homework1.Utill.InputHandler;
 
 public class Cake extends Dessert{
     private String size;
@@ -12,6 +10,17 @@ public class Cake extends Dessert{
     }
     public String getSize(){
         return size;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Cake cake = (Cake) obj;
+        return this.getAmount() == cake.getAmount() &&
+                this.getName().equals(cake.getName()) &&
+                this.getSize().equals(cake.getSize()) &&
+                this.getFork() == cake.getFork();
     }
     @Override
     public String getDescription() {
