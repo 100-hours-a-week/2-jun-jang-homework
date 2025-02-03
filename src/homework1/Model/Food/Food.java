@@ -1,4 +1,6 @@
-package homework1.Class.Food;
+package homework1.Model.Food;
+
+import homework1.Model.Enums.Menu;
 
 public abstract class Food {
     private int price;
@@ -20,5 +22,5 @@ public abstract class Food {
     }
 
     public abstract String getDescription();
-    public abstract  <T extends Food> T getMenu();
+
 }
